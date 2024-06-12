@@ -1,1 +1,2 @@
-# api-rest-loja-com-typeorm
+# api-rest-nest
+Estudo sobre api rest sem banco de dados.
