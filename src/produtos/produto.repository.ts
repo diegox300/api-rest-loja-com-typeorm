@@ -14,20 +14,19 @@ export class ProdutoRepository {
 
   private buscaPorId(id: string) {
     const possivelProduto = this.produtos.find(
-      produtoSalvo => produtoSalvo.id === id
+      (produtoSalvo) => produtoSalvo.id === id,
     );
-    if(!possivelProduto) {
+    if (!possivelProduto) {
       throw new Error('Usuário não existe.');
-      
     }
     return possivelProduto;
   }
 
   async atualiza(id: string, dadosDeAtualizacao: Partial<ProdutoEntity>) {
-    const produto = this.buscaPorId(id)
-  
+    const produto = this.buscaPorId(id);
+
     Object.entries(dadosDeAtualizacao).forEach(([chave, valor]) => {
-      if(chave === 'id'){
+      if (chave === 'id') {
         return;
       }
 
@@ -39,7 +38,7 @@ export class ProdutoRepository {
   async remove(id: string) {
     const produto = this.buscaPorId(id);
     this.produtos = this.produtos.filter(
-      produtoSalvo => produtoSalvo.id !== id 
+      (produtoSalvo) => produtoSalvo.id !== id,
     );
     return produto;
   }

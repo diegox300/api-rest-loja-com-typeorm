@@ -1,52 +1,58 @@
-import {  CaracteristicaProdutoEntity } from './CaracteristicaProduto.entity';
-import { Entity, 
-         Column,
-         PrimaryGeneratedColumn, 
-         OneToMany,
-         CreateDateColumn,
-         UpdateDateColumn,
-         DeleteDateColumn}
-         from 'typeorm';
+import { CaracteristicaProdutoEntity } from './CaracteristicaProduto.entity';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from 'typeorm';
 import { ImagemProdutoEntity } from './ImagemProduto.entity';
 
-  @Entity({ name: 'produtos' })
-  export class ProdutoEntity {
-
+@Entity({ name: 'produtos' })
+export class ProdutoEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column ({name: 'usuario_id', length: 100, nullable: false })
+  @Column({ name: 'usuario_id', length: 100, nullable: false })
   usuarioId: string;
 
-  @Column ({name: 'nome', length: 100, nullable: false })
+  @Column({ name: 'nome', length: 100, nullable: false })
   nome: string;
 
-  @Column ({name: 'valor', nullable: false })
+  @Column({ name: 'valor', nullable: false })
   valor: number;
 
-  @Column ({name: 'quantidade', nullable: false })
+  @Column({ name: 'quantidade', nullable: false })
   quantidade: number;
 
-  @Column ({name: 'descricao', length: 255, nullable: false })
+  @Column({ name: 'descricao', length: 255, nullable: false })
   descricao: string;
 
-  @OneToMany(() => CaracteristicaProdutoEntity, (caracteristicaProdutoEntity) => 
-                   caracteristicaProdutoEntity.produto, {cascade: true, eager: true})
+  @OneToMany(
+    () => CaracteristicaProdutoEntity,
+    (caracteristicaProdutoEntity) => caracteristicaProdutoEntity.produto,
+    { cascade: true, eager: true },
+  )
   caracteristicas: CaracteristicaProdutoEntity[];
 
-  @OneToMany(() => ImagemProdutoEntity, (imagemProdutoEntity) => 
-    imagemProdutoEntity.produto, {cascade: true, eager: true})
+  @OneToMany(
+    () => ImagemProdutoEntity,
+    (imagemProdutoEntity) => imagemProdutoEntity.produto,
+    { cascade: true, eager: true },
+  )
   imagens: ImagemProdutoEntity[];
 
-  @CreateDateColumn({name: 'created_at'})
-  createdAt: String;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: string;
 
-  @UpdateDateColumn({name: 'updated_at'})
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: string;
 
-  @DeleteDateColumn({name: 'deleted_at'})
+  @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
 
-  @Column ({name: 'categoria', length: 100, nullable: false })
+  @Column({ name: 'categoria', length: 100, nullable: false })
   categoria: string;
 }

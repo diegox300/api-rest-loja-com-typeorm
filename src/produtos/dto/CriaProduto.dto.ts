@@ -13,33 +13,30 @@ import { CaracteristicaProdutoEntity } from '../validacao/CaracteristicaProduto.
 import { ProdutoEntity } from '../validacao/produto.entity';
 
 export class CaracteristicaProdutoDTO {
-
   id: string;
 
   @IsString()
-  @IsNotEmpty({message: 'Nome da Caracteristica não pode ser vazio'})
+  @IsNotEmpty({ message: 'Nome da Caracteristica não pode ser vazio' })
   nome: string;
-  
+
   @IsString()
-  @IsNotEmpty({message: 'Nome da Caracteristica não pode ser vazio'})
+  @IsNotEmpty({ message: 'Nome da Caracteristica não pode ser vazio' })
   descricao: string;
 
   produto: ProdutoEntity;
 }
 
 export class ImagemProdutoDTO {
-
   id: string;
 
   @IsUrl()
   url: string;
 
   @IsString()
-  @IsNotEmpty({message: 'Nome da Caracteristica não pode ser vazio'})
+  @IsNotEmpty({ message: 'Nome da Caracteristica não pode ser vazio' })
   descricao: string;
 
-  produto: ProdutoEntity
-
+  produto: ProdutoEntity;
 }
 
 export class CriaProdutoDTO {
