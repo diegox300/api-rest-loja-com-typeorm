@@ -2,12 +2,45 @@ import {
   IsArray,
   IsNotEmpty,
   IsPositive,
+  IsString,
+  IsUrl,
   MaxLength,
   ValidateNested,
 } from 'class-validator';
-import { CaracteristicaProdutoDTO } from './CaracteristicaProduto.dto';
-import { ImagemProdutoDTO } from './ImagemProduto.dto';
+import { ImagemProdutoDTO } from '../validacao/ImagemProduto.dto';
 import { Type } from 'class-transformer';
+import { CaracteristicaProdutoEntity } from '../validacao/CaracteristicaProduto.entity';
+import { ProdutoEntity } from '../validacao/produto.entity';
+
+export class CaracteristicaProdutoDTO {
+
+  id: string;
+
+  @IsString()
+  @IsNotEmpty({message: 'Nome da Caracteristica não pode ser vazio'})
+  nome: string;
+  
+  @IsString()
+  @IsNotEmpty({message: 'Nome da Caracteristica não pode ser vazio'})
+  descricao: string;
+
+  produto: ProdutoEntity;
+}
+
+export class ImagemProdutoDTO {
+
+  id: string;
+
+  @IsUrl()
+  url: string;
+
+  @IsString()
+  @IsNotEmpty({message: 'Nome da Caracteristica não pode ser vazio'})
+  descricao: string;
+
+  produto: ProdutoEntity
+
+}
 
 export class CriaProdutoDTO {
   @IsNotEmpty({ message: 'Nome não pode ser vazio' })
@@ -22,10 +55,10 @@ export class CriaProdutoDTO {
   @MaxLength(1000)
   descricao: string;
 
-  @Type(() => CaracteristicaProdutoDTO)
+  @Type(() => CaracteristicaProdutoEntity)
   @IsArray()
   @ValidateNested()
-  caracteristicas: CaracteristicaProdutoDTO;
+  caracteristicas: CaracteristicaProdutoEntity[];
 
   @Type(() => ImagemProdutoDTO)
   @IsArray()

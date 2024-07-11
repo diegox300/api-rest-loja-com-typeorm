@@ -1,9 +1,13 @@
-import { CaracteristicaProdutoDTO } from '../dto/CaracteristicaProduto.dto';
-import { ImagemProdutoDTO } from '../dto/ImagemProduto.dto';
+import {  CaracteristicaProdutoEntity } from './CaracteristicaProduto.entity';
 import { Entity, 
          Column,
-         PrimaryGeneratedColumn }
+         PrimaryGeneratedColumn, 
+         OneToMany,
+         CreateDateColumn,
+         UpdateDateColumn,
+         DeleteDateColumn}
          from 'typeorm';
+import { ImagemProdutoEntity } from './ImagemProduto.entity';
 
   @Entity({ name: 'produtos' })
   export class ProdutoEntity {
@@ -26,12 +30,23 @@ import { Entity,
   @Column ({name: 'descricao', length: 255, nullable: false })
   descricao: string;
 
-  //@Column ({name: 'caracteristicas', length: 100, nullable: false })
-  //caracteristicas: CaracteristicaProdutoDTO;
+  @OneToMany(() => CaracteristicaProdutoEntity, (caracteristicaProdutoEntity) => 
+                   caracteristicaProdutoEntity.produto, {cascade: true, eager: true})
+  caracteristicas: CaracteristicaProdutoEntity[];
 
- // @Column ({name: 'imagens', length: 100, nullable: false })
- // imagens: ImagemProdutoDTO;
-  
+  @OneToMany(() => ImagemProdutoEntity, (imagemProdutoEntity) => 
+    imagemProdutoEntity.produto, {cascade: true, eager: true})
+  imagens: ImagemProdutoEntity[];
+
+  @CreateDateColumn({name: 'created_at'})
+  createdAt: String;
+
+  @UpdateDateColumn({name: 'updated_at'})
+  updatedAt: string;
+
+  @DeleteDateColumn({name: 'deleted_at'})
+  deletedAt: string;
+
   @Column ({name: 'categoria', length: 100, nullable: false })
   categoria: string;
 }

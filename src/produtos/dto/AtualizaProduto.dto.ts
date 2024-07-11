@@ -6,8 +6,8 @@ import {
   MaxLength,
   ValidateNested,
 } from 'class-validator';
-import { CaracteristicaProdutoDTO } from './CaracteristicaProduto.dto';
-import { ImagemProdutoDTO } from './ImagemProduto.dto';
+import { CaracteristicaProdutoEntity } from '../validacao/CaracteristicaProduto.entity';
+import { ImagemProdutoDTO } from '../validacao/ImagemProduto.dto';
 import { Type } from 'class-transformer';
 
 export class AtualizaProdutoDTO {
@@ -28,10 +28,10 @@ export class AtualizaProdutoDTO {
   descricao: string;
 
   @IsOptional()
-  @Type(() => CaracteristicaProdutoDTO)
+  @Type(() => CaracteristicaProdutoEntity)
   @IsArray()
   @ValidateNested()
-  caracteristicas: CaracteristicaProdutoDTO;
+  caracteristicas: CaracteristicaProdutoEntity[];
 
   @IsOptional()
   @Type(() => ImagemProdutoDTO)

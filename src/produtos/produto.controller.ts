@@ -13,10 +13,10 @@ export class ProdutoController {
   @Post()
   async criaProduto(@Body() dadosDoProduto: CriaProdutoDTO) {
     const produtoEntity = new ProdutoEntity();
-   // produtoEntity.caracteristicas = dadosDoProduto.caracteristicas;
+    produtoEntity.caracteristicas = dadosDoProduto.caracteristicas;
     produtoEntity.categoria = dadosDoProduto.categoria;
-  //  produtoEntity.descricao = dadosDoProduto.descricao;
-  //  produtoEntity.imagens = dadosDoProduto.imagens;
+    produtoEntity.descricao = dadosDoProduto.descricao;
+    produtoEntity.imagens = dadosDoProduto.imagens;
     produtoEntity.nome = dadosDoProduto.nome;
     produtoEntity.quantidade = dadosDoProduto.quantidade;
     produtoEntity.valor = dadosDoProduto.valor;

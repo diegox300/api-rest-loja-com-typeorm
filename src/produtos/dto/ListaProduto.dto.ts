@@ -1,9 +1,9 @@
-import { CaracteristicaProdutoDTO } from "./CaracteristicaProduto.dto";
+import { CaracteristicaProdutoEntity } from "../validacao/CaracteristicaProduto.entity";
 
 export class ListaProdutoDTO {
   constructor(
     readonly id: string,
     readonly nome: string
-    //readonly caracteristicas: CaracteristicaProdutoDTO,
+    //readonly caracteristicas: CaracteristicaProdutoEntity
   ) {}
 }
